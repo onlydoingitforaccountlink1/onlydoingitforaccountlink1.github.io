@@ -9,3 +9,79 @@
     dit is fricking bruut 
  </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Empire 🍪</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="game">
+        <h1>🍪 Cookie Empire</h1>
+
+        <section class="stats">
+            <div>
+                <span id="cookies">0</span> cookies
+            </div>
+            <div>
+                <span id="cps">0</span> cookies/sec
+            </div>
+        </section>
+
+        <button id="cookie" class="cookie" aria-label="Klik op de cookie">
+            🍪
+        </button>
+
+        <p class="hint">Klik op de cookie om cookies te verdienen!</p>
+
+        <section class="shop">
+            <h2>🛒 Shop</h2>
+
+            <button id="cursor" class="upgrade">
+                <span>
+                    👆 Cursor
+                    <small>+1 cookie/sec</small>
+                </span>
+                <strong><span id="cursorPrice">15</span> 🍪</strong>
+            </button>
+
+            <button id="grandma" class="upgrade">
+                <span>
+                    👵 Oma
+                    <small>+5 cookies/sec</small>
+                </span>
+                <strong><span id="grandmaPrice">100</span> 🍪</strong>
+            </button>
+
+            <button id="factory" class="upgrade">
+                <span>
+                    🏭 Fabriek
+                    <small>+25 cookies/sec</small>
+                </span>
+                <strong><span id="factoryPrice">500</span> 🍪</strong>
+            </button>
+
+            <button id="farm" class="upgrade">
+                <span>
+                    🌾 Koekjesboerderij
+                    <small>+100 cookies/sec</small>
+                </span>
+                <strong><span id="farmPrice">2500</span> 🍪</strong>
+            </button>
+        </section>
+
+        <section class="bottom">
+            <button id="save">💾 Opslaan</button>
+            <button id="reset">🗑️ Reset</button>
+        </section>
+
+        <p id="message"></p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
