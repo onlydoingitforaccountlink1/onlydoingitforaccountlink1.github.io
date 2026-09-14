@@ -562,3 +562,167 @@ function updateStats() {
 </body>
 </html>
 ```
+```html
+<!-- ROULETTE MINIGAME -->
+<div id="roulette" style="
+  margin-top: 40px;
+  padding: 25px;
+  background: #075c3b;
+  border: 4px solid #d4a72c;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+">
+
+  <h2>🎡 Roulette</h2>
+  <p>Kies een nummer en draai het wiel!</p>
+
+  <div style="
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    max-width: 600px;
+  ">
+
+    <button onclick="roulettePick(0)">0</button>
+    <button onclick="roulettePick(1)">1</button>
+    <button onclick="roulettePick(2)">2</button>
+    <button onclick="roulettePick(3)">3</button>
+    <button onclick="roulettePick(4)">4</button>
+    <button onclick="roulettePick(5)">5</button>
+    <button onclick="roulettePick(6)">6</button>
+    <button onclick="roulettePick(7)">7</button>
+    <button onclick="roulettePick(8)">8</button>
+    <button onclick="roulettePick(9)">9</button>
+    <button onclick="roulettePick(10)">10</button>
+    <button onclick="roulettePick(11)">11</button>
+    <button onclick="roulettePick(12)">12</button>
+    <button onclick="roulettePick(13)">13</button>
+    <button onclick="roulettePick(14)">14</button>
+    <button onclick="roulettePick(15)">15</button>
+    <button onclick="roulettePick(16)">16</button>
+    <button onclick="roulettePick(17)">17</button>
+    <button onclick="roulettePick(18)">18</button>
+    <button onclick="roulettePick(19)">19</button>
+    <button onclick="roulettePick(20)">20</button>
+    <button onclick="roulettePick(21)">21</button>
+    <button onclick="roulettePick(22)">22</button>
+    <button onclick="roulettePick(23)">23</button>
+    <button onclick="roulettePick(24)">24</button>
+    <button onclick="roulettePick(25)">25</button>
+    <button onclick="roulettePick(26)">26</button>
+    <button onclick="roulettePick(27)">27</button>
+    <button onclick="roulettePick(28)">28</button>
+    <button onclick="roulettePick(29)">29</button>
+    <button onclick="roulettePick(30)">30</button>
+    <button onclick="roulettePick(31)">31</button>
+    <button onclick="roulettePick(32)">32</button>
+    <button onclick="roulettePick(33)">33</button>
+    <button onclick="roulettePick(34)">34</button>
+    <button onclick="roulettePick(35)">35</button>
+    <button onclick="roulettePick(36)">36</button>
+
+  </div>
+
+  <button
+    onclick="spinRoulette()"
+    style="
+      background: #d4a72c;
+      color: black;
+      border: none;
+      padding: 14px 25px;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    "
+  >
+    🎡 DRAAI
+  </button>
+
+  <div
+    id="rouletteResult"
+    style="
+      margin-top: 20px;
+      font-size: 25px;
+      font-weight: bold;
+      min-height: 35px;
+    "
+  >
+    Kies eerst een nummer!
+  </div>
+
+</div>
+
+<script>
+
+let selectedRouletteNumber = null;
+let rouletteSpinning = false;
+
+
+/* Nummer kiezen */
+
+function roulettePick(number) {
+
+  if (rouletteSpinning) return;
+
+  selectedRouletteNumber = number;
+
+  document.getElementById("rouletteResult")
+    .textContent =
+      "Je koos nummer " + number + " 🎯";
+}
+
+
+/* Roulette draaien */
+
+function spinRoulette() {
+
+  if (rouletteSpinning) return;
+
+  if (selectedRouletteNumber === null) {
+
+    document.getElementById("rouletteResult")
+      .textContent =
+        "Kies eerst een nummer! 👀";
+
+    return;
+  }
+
+  rouletteSpinning = true;
+
+  const resultElement =
+    document.getElementById("rouletteResult");
+
+  resultElement.textContent =
+    "🎡 Het wiel draait...";
+
+
+  setTimeout(() => {
+
+    const result =
+      Math.floor(Math.random() * 37);
+
+    if (result === selectedRouletteNumber) {
+
+      resultElement.textContent =
+        "🎉 Het is " + result +
+        "! Je had het goed!";
+
+    } else {
+
+      resultElement.textContent =
+        "🎡 Het is " + result +
+        ". Misschien volgende keer!";
+
+    }
+
+    rouletteSpinning = false;
+
+  }, 1500);
+}
+
+</script>
+```
