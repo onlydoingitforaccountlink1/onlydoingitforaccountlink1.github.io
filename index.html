@@ -1,336 +1,59 @@
-```html
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flappy Bird</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: #222;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
-
-    canvas {
-      background: #70c5ce;
-      border: 4px solid white;
-      max-width: 100%;
-      max-height: 100vh;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informatica - Home</title>
+    <link rel="stylesheet" href="opmaak.css">
 </head>
 
 <body>
-    ```html
-<a href="blackjack.html" class="blackjack-button">
-  🃏 speel Blackjack
-</a>
 
-<style>
-  .blackjack-button {
-    position: fixed;
-    right: 15px;
-    bottom: 70px;
-    background: #d4a72c;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  }
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="binairstelsel.html">Binaire stelsel</a></li>
+            <li><a href="kleurmodellen.html">Kleurmodellen</a></li>
+        </ul>
+    </nav>
 
-  .blackjack-button:hover {
-    background: #b88d1f;
-    transform: scale(1.05);
-  }
-</style>
-```
+    <main>
 
+        <h1>Welkom op mijn website</h1>
 
-    ```html
-<a href="nogwat.html" class="snake-button">
-  🐍 speel Snake
-</a>
+        <p>
+            Op deze website leer je meer over verschillende onderwerpen
+            uit de informatica.
+        </p>
 
-<style>
-  .snake-button {
-    position: fixed;
-    right: 15px;
-    bottom: 15px;
-    background: #4caf50;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  }
+        <p>
+            Gebruik het menu hierboven om naar de verschillende pagina's
+            te gaan.
+        </p>
 
-  .snake-button:hover {
-    background: #45a049;
-    transform: scale(1.05);
-  }
-</style>
-```
+        <div class="kaart">
 
-    <a href="nogwat.html">🐍 speel Snake</a>
-```html
-<a href="binairstelsel.html" class="cookie-button">
-  klik voor een koekje
-</a>
+            <h2>Onderwerpen</h2>
 
-<style>
-  .cookie-button {
-    position: fixed;
-    left: 15px;
-    bottom: 15px;
-    background: #8b5a2b;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  }
+            <p>
+                Bekijk het
+                <a href="binairstelsel.html">binaire stelsel</a>
+                en de verschillende
+                <a href="kleurmodellen.html">kleurmodellen</a>.
+            </p>
 
-  .cookie-button:hover {
-    background: #a66a35;
-    transform: scale(1.05);
-  }
-</style>
-```
+        </div>
 
-<canvas id="game" width="400" height="600"></canvas>
+        <img
+            src="https://placehold.co/800x300?text=Mijn+website"
+            alt="Voorbeeldafbeelding van mijn website"
+        >
 
-<script>
-const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
+    </main>
 
-let bird;
-let pipes;
-let score;
-let gameOver;
-let started;
-
-const gravity = 0.45;
-const jump = -7;
-const pipeWidth = 60;
-const pipeGap = 150;
-const pipeSpeed = 2.5;
-
-function resetGame() {
-  bird = {
-    x: 80,
-    y: 300,
-    size: 25,
-    velocity: 0
-  };
-
-  pipes = [];
-  score = 0;
-  gameOver = false;
-  started = false;
-}
-
-function flap() {
-  if (gameOver) {
-    resetGame();
-    return;
-  }
-
-  started = true;
-  bird.velocity = jump;
-}
-
-function createPipe() {
-  const topHeight =
-    Math.random() * 250 + 50;
-
-  pipes.push({
-    x: canvas.width,
-    top: topHeight,
-    bottom: topHeight + pipeGap,
-    passed: false
-  });
-}
-
-function update() {
-  if (!started || gameOver) return;
-
-  bird.velocity += gravity;
-  bird.y += bird.velocity;
-
-  // nieuwe pipes
-  if (
-    pipes.length === 0 ||
-    pipes[pipes.length - 1].x < 220
-  ) {
-    createPipe();
-  }
-
-  // pipes bewegen
-  for (let pipe of pipes) {
-    pipe.x -= pipeSpeed;
-
-    // score
-    if (!pipe.passed && pipe.x + pipeWidth < bird.x) {
-      score++;
-      pipe.passed = true;
-    }
-
-    // collision
-    if (
-      bird.x < pipe.x + pipeWidth &&
-      bird.x + bird.size > pipe.x &&
-      (
-        bird.y < pipe.top ||
-        bird.y + bird.size > pipe.bottom
-      )
-    ) {
-      gameOver = true;
-    }
-  }
-
-  // pipes verwijderen
-  pipes = pipes.filter(pipe => pipe.x + pipeWidth > 0);
-
-  // grond/plafond
-  if (
-    bird.y + bird.size > canvas.height ||
-    bird.y < 0
-  ) {
-    gameOver = true;
-  }
-}
-
-function drawBird() {
-  ctx.fillStyle = "#FFD93D";
-  ctx.fillRect(
-    bird.x,
-    bird.y,
-    bird.size,
-    bird.size
-  );
-
-  // oog
-  ctx.fillStyle = "black";
-  ctx.fillRect(
-    bird.x + 17,
-    bird.y + 5,
-    5,
-    5
-  );
-}
-
-function drawPipes() {
-  ctx.fillStyle = "#4CAF50";
-
-  for (let pipe of pipes) {
-    // bovenste pipe
-    ctx.fillRect(
-      pipe.x,
-      0,
-      pipeWidth,
-      pipe.top
-    );
-
-    // onderste pipe
-    ctx.fillRect(
-      pipe.x,
-      pipe.bottom,
-      pipeWidth,
-      canvas.height - pipe.bottom
-    );
-  }
-}
-
-function draw() {
-  // lucht
-  ctx.fillStyle = "#70c5ce";
-  ctx.fillRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-  drawPipes();
-  drawBird();
-
-  // score
-  ctx.fillStyle = "white";
-  ctx.font = "40px Arial";
-  ctx.textAlign = "center";
-  ctx.fillText(score, canvas.width / 2, 60);
-
-  if (!started && !gameOver) {
-    ctx.font = "24px Arial";
-    ctx.fillText(
-      "Klik of druk op SPACE",
-      canvas.width / 2,
-      300
-    );
-  }
-
-  if (gameOver) {
-    ctx.font = "40px Arial";
-    ctx.fillText(
-      "GAME OVER",
-      canvas.width / 2,
-      280
-    );
-
-    ctx.font = "22px Arial";
-    ctx.fillText(
-      "Klik om opnieuw te spelen",
-      canvas.width / 2,
-      320
-    );
-  }
-}
-
-function gameLoop() {
-  update();
-  draw();
-  requestAnimationFrame(gameLoop);
-}
-
-// muisklik
-canvas.addEventListener("click", flap);
-
-// toetsenbord
-document.addEventListener("keydown", (event) => {
-  if (event.code === "Space") {
-    event.preventDefault();
-    flap();
-  }
-});
-
-// mobiel/touch
-canvas.addEventListener("touchstart", (event) => {
-  event.preventDefault();
-  flap();
-});
-
-resetGame();
-gameLoop();
-</script>
+    <footer>
+        <p>Mijn GitHub Pages website</p>
+    </footer>
 
 </body>
 </html>
-```

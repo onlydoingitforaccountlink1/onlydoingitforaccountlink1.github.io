@@ -3,98 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Empire 🍪</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Het binaire stelsel</title>
+    <link rel="stylesheet" href="opmaak.css">
 </head>
 
 <body>
-    ```html
-<a href="index.html" class="vogel-button">vogel op</a>
 
-<style>
-  .vogel-button {
-    position: fixed;
-    left: 15px;
-    bottom: 15px;
-    background: #4caf50;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  }
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="binairstelsel.html">Binaire stelsel</a></li>
+            <li><a href="kleurmodellen.html">Kleurmodellen</a></li>
+        </ul>
+    </nav>
 
-  .vogel-button:hover {
-    background: #45a049;
-    transform: scale(1.05);
-  }
-</style>
-```
+    <main>
 
-    <main class="game">
-        <h1>🍪 Cookie Empire</h1>
+        <h1>Het binaire stelsel</h1>
 
-        <section class="stats">
-            <div>
-                <span id="cookies">0</span> cookies
-            </div>
-            <div>
-                <span id="cps">0</span> cookies/sec
-            </div>
-        </section>
+        <p>
+            Computers werken met bits. Een bit kan twee waarden hebben:
+            0 of 1. Daarom wordt voor computers vaak het binaire stelsel gebruikt.
+        </p>
 
-        <button id="cookie" class="cookie" aria-label="Klik op de cookie">
-            🍪
-        </button>
+        <h2>Binair tellen</h2>
 
-        <p class="hint">Klik op de cookie om cookies te verdienen!</p>
+        <p>
+            In het binaire stelsel zijn alleen de cijfers 0 en 1 beschikbaar.
+        </p>
 
-        <section class="shop">
-            <h2>🛒 Shop</h2>
+        <ul class="lijst">
+            <li>0 = 0</li>
+            <li>1 = 1</li>
+            <li>10 = 2</li>
+            <li>11 = 3</li>
+            <li>100 = 4</li>
+            <li>101 = 5</li>
+        </ul>
 
-            <button id="cursor" class="upgrade">
-                <span>
-                    👆 Cursor
-                    <small>+1 cookie/sec</small>
-                </span>
-                <strong><span id="cursorPrice">15</span> 🍪</strong>
-            </button>
+        <div class="kaart">
+            <h2>Terug naar de homepage</h2>
+            <a class="knop" href="index.html">Home</a>
+        </div>
 
-            <button id="grandma" class="upgrade">
-                <span>
-                    👵 Oma
-                    <small>+5 cookies/sec</small>
-                </span>
-                <strong><span id="grandmaPrice">100</span> 🍪</strong>
-            </button>
-
-            <button id="factory" class="upgrade">
-                <span>
-                    🏭 Fabriek
-                    <small>+25 cookies/sec</small>
-                </span>
-                <strong><span id="factoryPrice">500</span> 🍪</strong>
-            </button>
-
-            <button id="farm" class="upgrade">
-                <span>
-                    🌾 Koekjesboerderij
-                    <small>+100 cookies/sec</small>
-                </span>
-                <strong><span id="farmPrice">2500</span> 🍪</strong>
-            </button>
-        </section>
-
-        <section class="bottom">
-            <button id="save">💾 Opslaan</button>
-            <button id="reset">🗑️ Reset</button>
-        </section>
-
-        <p id="message"></p>
     </main>
 
-    <script src="script.js"></script>
+    <footer>
+        <p>Mijn GitHub Pages website</p>
+    </footer>
+
 </body>
 </html>
