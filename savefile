@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informatica - Home</title>
+    <link rel="stylesheet" href="opmaak.css">
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="binairstelsel.html">Binaire stelsel</a></li>
+            <li><a href="kleurmodellen.html">Kleurmodellen</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <h1>Welkom op mijn website</h1>
+
+        <p>
+            Op deze website leer je meer over verschillende onderwerpen
+            uit de informatica.
+        </p>
+
+        <p>
+            Gebruik het menu hierboven om naar de verschillende pagina's
+            te gaan.
+        </p>
+
+        <div class="kaart">
+
+            <h2>Onderwerpen</h2>
+
+            <p>
+                Bekijk het
+                <a href="binairstelsel.html">binaire stelsel</a>
+                en de verschillende
+                <a href="kleurmodellen.html">kleurmodellen</a>.
+            </p>
+
+        </div>
+
+        <img
+            src="https://placehold.co/800x300?text=Mijn+website"
+            alt="Voorbeeldafbeelding van mijn website"
+        >
+
+    </main>
+
+    <footer>
+        <p>Mijn GitHub Pages website</p>
+    </footer>
+
+</body>
+</html>

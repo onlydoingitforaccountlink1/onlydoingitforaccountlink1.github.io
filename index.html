@@ -1,59 +1,623 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informatica - Home</title>
-    <link rel="stylesheet" href="opmaak.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameHub 🎮</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #10131a;
+  color: white;
+}
+
+header {
+  text-align: center;
+  padding: 30px 20px;
+  background: #171b25;
+  border-bottom: 2px solid #292f3d;
+}
+
+h1 {
+  margin: 0;
+  font-size: 42px;
+}
+
+header p {
+  color: #aaa;
+}
+
+.score {
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+nav {
+  display: flex;
+  gap: 8px;
+  padding: 15px;
+  overflow-x: auto;
+  background: #141820;
+}
+
+nav button {
+  white-space: nowrap;
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 10px;
+  background: #292f3d;
+  color: white;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background: #3b4354;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 25px;
+}
+
+.game {
+  display: none;
+  background: #171b25;
+  padding: 25px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 30px #0005;
+}
+
+.game.active {
+  display: block;
+}
+
+button.action {
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 10px;
+  background: #5865f2;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+button.action:hover {
+  background: #7180ff;
+}
+
+.result {
+  font-size: 25px;
+  margin: 20px;
+  min-height: 40px;
+}
+
+.cards {
+  font-size: 45px;
+  margin: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 55px);
+  justify-content: center;
+  gap: 8px;
+  margin: 20px;
+}
+
+.mine {
+  width: 55px;
+  height: 55px;
+  border: 0;
+  border-radius: 8px;
+  background: #303746;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.mine:hover {
+  background: #444d61;
+}
+
+.plinko {
+  font-size: 50px;
+  margin: 25px;
+}
+
+.higher-number {
+  font-size: 60px;
+  margin: 20px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #202532;
+  color: white;
+  width: 100px;
+  text-align: center;
+}
+</style>
 </head>
 
 <body>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="binairstelsel.html">Binaire stelsel</a></li>
-            <li><a href="kleurmodellen.html">Kleurmodellen</a></li>
-        </ul>
-    </nav>
+<header>
+  <h1>🎮 GameHub</h1>
+  <p>Games, punten en chaos. Geen echt geld.</p>
+  <div class="score">⭐ Punten: <span id="score">0</span></div>
+</header>
 
-    <main>
+<nav>
+  <button onclick="showGame('dice')">🎲 Dobbelstenen</button>
+  <button onclick="showGame('roulette')">🎡 Roulette</button>
+  <button onclick="showGame('blackjack')">🃏 Blackjack</button>
+  <button onclick="showGame('poker')">♠️ Poker</button>
+  <button onclick="showGame('plinko')">🔴 Plinko</button>
+  <button onclick="showGame('mines')">💣 Mijnenveld</button>
+  <button onclick="showGame('higher')">⬆️⬇️ Higher/Lower</button>
+</nav>
 
-        <h1>Welkom op mijn website</h1>
+<main>
 
-        <p>
-            Op deze website leer je meer over verschillende onderwerpen
-            uit de informatica.
-        </p>
+<!-- DOBBELSTENEN -->
+<section id="dice" class="game active">
+  <h2>🎲 Dobbelstenen</h2>
 
-        <p>
-            Gebruik het menu hierboven om naar de verschillende pagina's
-            te gaan.
-        </p>
+  <div class="result" id="diceResult">🎲 🎲</div>
 
-        <div class="kaart">
+  <button class="action" onclick="rollDice()">
+    Gooien
+  </button>
+</section>
 
-            <h2>Onderwerpen</h2>
+<!-- ROULETTE -->
+<section id="roulette" class="game">
+  <h2>🎡 Roulette</h2>
 
-            <p>
-                Bekijk het
-                <a href="binairstelsel.html">binaire stelsel</a>
-                en de verschillende
-                <a href="kleurmodellen.html">kleurmodellen</a>.
-            </p>
+  <div class="result" id="rouletteResult">❓</div>
 
-        </div>
+  <button class="action" onclick="spinRoulette()">
+    Draaien
+  </button>
+</section>
 
-        <img
-            src="https://placehold.co/800x300?text=Mijn+website"
-            alt="Voorbeeldafbeelding van mijn website"
-        >
+<!-- BLACKJACK -->
+<section id="blackjack" class="game">
+  <h2>🃏 Blackjack</h2>
 
-    </main>
+  <p>Jouw kaarten:</p>
+  <div class="cards" id="playerCards">❓</div>
 
-    <footer>
-        <p>Mijn GitHub Pages website</p>
-    </footer>
+  <p>Computer:</p>
+  <div class="cards" id="dealerCards">❓</div>
+
+  <div class="result" id="blackjackResult"></div>
+
+  <button class="action" onclick="startBlackjack()">Nieuwe ronde</button>
+  <button class="action" onclick="hit()">Kaart pakken</button>
+  <button class="action" onclick="stand()">Stop</button>
+</section>
+
+<!-- POKER -->
+<section id="poker" class="game">
+  <h2>♠️ Texas Hold'em Simulator</h2>
+
+  <p>Jouw kaarten:</p>
+  <div class="cards" id="pokerPlayer"></div>
+
+  <p>Community cards:</p>
+  <div class="cards" id="community"></div>
+
+  <button class="action" onclick="dealPoker()">
+    Nieuwe hand
+  </button>
+
+  <div class="result" id="pokerResult"></div>
+</section>
+
+<!-- PLINKO -->
+<section id="plinko" class="game">
+  <h2>🔴 Plinko</h2>
+
+  <div class="plinko" id="plinkoResult">🔴</div>
+
+  <button class="action" onclick="playPlinko()">
+    Laat vallen
+  </button>
+
+  <div class="result" id="plinkoText"></div>
+</section>
+
+<!-- MINES -->
+<section id="mines" class="game">
+  <h2>💣 Mijnenveld</h2>
+
+  <p>Vind de veilige vakjes!</p>
+
+  <div class="grid" id="mineGrid"></div>
+
+  <button class="action" onclick="createMines()">
+    Nieuw veld
+  </button>
+
+  <div class="result" id="mineResult"></div>
+</section>
+
+<!-- HIGHER LOWER -->
+<section id="higher" class="game">
+  <h2>⬆️⬇️ Higher or Lower</h2>
+
+  <p>Wordt het volgende getal hoger of lager?</p>
+
+  <div class="higher-number" id="higherNumber">50</div>
+
+  <button class="action" onclick="higherLower('higher')">
+    ⬆️ Hoger
+  </button>
+
+  <button class="action" onclick="higherLower('lower')">
+    ⬇️ Lager
+  </button>
+
+  <div class="result" id="higherResult"></div>
+</section>
+
+</main>
+
+<script>
+
+let score = 0;
+
+function addScore(points) {
+  score += points;
+
+  if (score < 0) score = 0;
+
+  document.getElementById("score").textContent = score;
+}
+
+function showGame(id) {
+  document.querySelectorAll(".game").forEach(game => {
+    game.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+}
+
+/* =========================
+   DOBBELSTENEN
+========================= */
+
+function rollDice() {
+
+  let a = Math.floor(Math.random() * 6) + 1;
+  let b = Math.floor(Math.random() * 6) + 1;
+
+  let total = a + b;
+
+  document.getElementById("diceResult").textContent =
+    `🎲 ${a} + ${b} = ${total}`;
+
+  addScore(total);
+}
+
+
+/* =========================
+   ROULETTE
+========================= */
+
+function spinRoulette() {
+
+  let number = Math.floor(Math.random() * 37);
+
+  let color;
+
+  if (number === 0) {
+    color = "🟢 Groen";
+  } else if (number % 2 === 0) {
+    color = "⚫ Zwart";
+  } else {
+    color = "🔴 Rood";
+  }
+
+  document.getElementById("rouletteResult").textContent =
+    `${number} - ${color}`;
+
+  addScore(5);
+}
+
+
+/* =========================
+   BLACKJACK
+========================= */
+
+let player = [];
+let dealer = [];
+
+function randomCard() {
+  return Math.floor(Math.random() * 10) + 1;
+}
+
+function cardTotal(cards) {
+  return cards.reduce((a, b) => a + b, 0);
+}
+
+function startBlackjack() {
+
+  player = [randomCard(), randomCard()];
+  dealer = [randomCard(), randomCard()];
+
+  updateBlackjack();
+
+  document.getElementById("blackjackResult").textContent = "";
+}
+
+function updateBlackjack() {
+
+  document.getElementById("playerCards").textContent =
+    player.map(x => "🃏" + x).join(" ");
+
+  document.getElementById("dealerCards").textContent =
+    dealer.map(x => "🃏" + x).join(" ");
+}
+
+function hit() {
+
+  if (player.length === 0) {
+    startBlackjack();
+    return;
+  }
+
+  player.push(randomCard());
+
+  updateBlackjack();
+
+  if (cardTotal(player) > 21) {
+    document.getElementById("blackjackResult").textContent =
+      "💀 Je bent boven 21!";
+  }
+}
+
+function stand() {
+
+  if (player.length === 0) return;
+
+  let playerScore = cardTotal(player);
+  let dealerScore = cardTotal(dealer);
+
+  while (dealerScore < 17) {
+    dealer.push(randomCard());
+    dealerScore = cardTotal(dealer);
+  }
+
+  updateBlackjack();
+
+  let result = "";
+
+  if (playerScore > 21) {
+    result = "💀 Je bent bust!";
+  } else if (dealerScore > 21 || playerScore > dealerScore) {
+    result = "🔥 Jij wint!";
+    addScore(25);
+  } else if (playerScore === dealerScore) {
+    result = "🤝 Gelijkspel!";
+    addScore(5);
+  } else {
+    result = "😔 Computer wint!";
+  }
+
+  document.getElementById("blackjackResult").textContent = result;
+}
+
+
+/* =========================
+   POKER
+========================= */
+
+const suits = ["♠️", "♥️", "♦️", "♣️"];
+
+function randomPokerCard() {
+
+  let value = Math.floor(Math.random() * 13) + 1;
+  let suit = suits[Math.floor(Math.random() * suits.length)];
+
+  let names = {
+    1: "A",
+    11: "J",
+    12: "Q",
+    13: "K"
+  };
+
+  return (names[value] || value) + suit;
+}
+
+function dealPoker() {
+
+  let playerCards = [];
+
+  let communityCards = [];
+
+  for (let i = 0; i < 2; i++) {
+    playerCards.push(randomPokerCard());
+  }
+
+  for (let i = 0; i < 5; i++) {
+    communityCards.push(randomPokerCard());
+  }
+
+  document.getElementById("pokerPlayer").textContent =
+    playerCards.join("  ");
+
+  document.getElementById("community").textContent =
+    communityCards.join("  ");
+
+  document.getElementById("pokerResult").textContent =
+    "🃏 Hand gedeeld!";
+
+  addScore(10);
+}
+
+
+/* =========================
+   PLINKO
+========================= */
+
+function playPlinko() {
+
+  let slots = [
+    5,
+    10,
+    20,
+    50,
+    100,
+    50,
+    20,
+    10,
+    5
+  ];
+
+  let position = Math.floor(Math.random() * slots.length);
+
+  let points = slots[position];
+
+  document.getElementById("plinkoResult").textContent =
+    "🔴";
+
+  document.getElementById("plinkoText").textContent =
+    `Je bal viel in vak ${position + 1}: +${points} punten`;
+
+  addScore(points);
+}
+
+
+/* =========================
+   MIJNENVELD
+========================= */
+
+let mines = [];
+let mineGameOver = false;
+
+function createMines() {
+
+  let grid = document.getElementById("mineGrid");
+
+  grid.innerHTML = "";
+
+  mines = [];
+  mineGameOver = false;
+
+  for (let i = 0; i < 25; i++) {
+    mines.push(Math.random() < 0.2);
+
+    let button = document.createElement("button");
+
+    button.className = "mine";
+
+    button.textContent = "?";
+
+    button.onclick = () => revealMine(i, button);
+
+    grid.appendChild(button);
+  }
+
+  document.getElementById("mineResult").textContent =
+    "Veel succes 👀";
+}
+
+function revealMine(index, button) {
+
+  if (mineGameOver) return;
+
+  if (mines[index]) {
+
+    button.textContent = "💣";
+
+    document.getElementById("mineResult").textContent =
+      "💥 Mine gevonden!";
+
+    mineGameOver = true;
+
+  } else {
+
+    button.textContent = "💎";
+
+    addScore(5);
+
+    document.getElementById("mineResult").textContent =
+      "💎 Veilig! +5 punten";
+  }
+}
+
+
+/* =========================
+   HIGHER / LOWER
+========================= */
+
+let currentNumber = 50;
+
+function newHigherNumber() {
+
+  currentNumber =
+    Math.floor(Math.random() * 100) + 1;
+
+  document.getElementById("higherNumber").textContent =
+    currentNumber;
+}
+
+function higherLower(choice) {
+
+  let oldNumber = currentNumber;
+
+  let newNumber =
+    Math.floor(Math.random() * 100) + 1;
+
+  let correct = false;
+
+  if (choice === "higher" && newNumber > oldNumber) {
+    correct = true;
+  }
+
+  if (choice === "lower" && newNumber < oldNumber) {
+    correct = true;
+  }
+
+  currentNumber = newNumber;
+
+  document.getElementById("higherNumber").textContent =
+    newNumber;
+
+  if (correct) {
+
+    document.getElementById("higherResult").textContent =
+      "🔥 Correct! +10 punten";
+
+    addScore(10);
+
+  } else {
+
+    document.getElementById("higherResult").textContent =
+      "💀 Helaas!";
+  }
+}
+
+
+/* START */
+
+startBlackjack();
+createMines();
+
+</script>
 
 </body>
 </html>
