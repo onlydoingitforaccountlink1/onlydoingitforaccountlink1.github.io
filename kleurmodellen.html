@@ -1,0 +1,267 @@
+```html
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kleurmodellen en Hexadecimalen</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f2f2f2;
+            color: #222;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #444;
+        }
+
+        .rgb-box {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .kleur {
+            flex: 1;
+            padding: 30px 10px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+        }
+
+        .rood {
+            background-color: #FF0000;
+        }
+
+        .groen {
+            background-color: #00FF00;
+            color: black;
+        }
+
+        .blauw {
+            background-color: #0000FF;
+        }
+
+        .spel {
+            text-align: center;
+        }
+
+        input {
+            padding: 12px;
+            font-size: 18px;
+            width: 180px;
+            border: 2px solid #aaa;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 8px;
+            background-color: #333;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        #kleurVoorbeeld {
+            width: 200px;
+            height: 150px;
+            margin: 20px auto;
+            border-radius: 10px;
+            border: 2px solid #333;
+            background-color: white;
+        }
+
+        #melding {
+            font-weight: bold;
+            min-height: 25px;
+        }
+
+        .home-knop {
+            background-color: #0077cc;
+        }
+
+        .home-knop:hover {
+            background-color: #005fa3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Kleurmodellen en Hexadecimalen</h1>
+        <p>Leer hoe kleuren op een computer worden weergegeven.</p>
+    </header>
+
+    <main>
+
+        <!-- Uitleg kleurmodellen -->
+        <section>
+            <h2>Wat zijn kleurmodellen?</h2>
+
+            <p>
+                Een kleurmodel is een manier om kleuren digitaal te beschrijven.
+                Computers gebruiken verschillende kleurmodellen om kleuren weer te geven.
+            </p>
+
+            <p>
+                Een bekend kleurmodel is <strong>RGB</strong>. RGB staat voor
+                <strong>Red, Green en Blue</strong>.
+            </p>
+
+            <p>
+                Door rood, groen en blauw in verschillende hoeveelheden te combineren,
+                kunnen heel veel verschillende kleuren worden gemaakt.
+            </p>
+
+            <div class="rgb-box">
+                <div class="kleur rood">Rood<br>#FF0000</div>
+                <div class="kleur groen">Groen<br>#00FF00</div>
+                <div class="kleur blauw">Blauw<br>#0000FF</div>
+            </div>
+        </section>
+
+
+        <!-- Uitleg hexadecimalen -->
+        <section>
+            <h2>Wat is een hexadecimale kleurcode?</h2>
+
+            <p>
+                Een hexadecimale kleurcode is een manier om een kleur met zes tekens
+                te beschrijven. De code begint met een <strong>#</strong>.
+            </p>
+
+            <p>
+                Bijvoorbeeld:
+            </p>
+
+            <p style="font-size: 24px; font-weight: bold;">
+                #FF5733
+            </p>
+
+            <p>
+                De eerste twee tekens bepalen de hoeveelheid rood,
+                de volgende twee de hoeveelheid groen en de laatste twee
+                de hoeveelheid blauw.
+            </p>
+
+            <p>
+                Hexadecimale codes gebruiken de cijfers <strong>0 t/m 9</strong>
+                en de letters <strong>A t/m F</strong>.
+            </p>
+
+            <ul>
+                <li><strong>00</strong> = geen kleur</li>
+                <li><strong>FF</strong> = maximale hoeveelheid kleur</li>
+            </ul>
+
+            <p>
+                Zo betekent <strong>#FFFFFF</strong> wit en
+                <strong>#000000</strong> zwart.
+            </p>
+        </section>
+
+
+        <!-- Spel -->
+        <section class="spel">
+            <h2>🎨 Hex-kleur spel</h2>
+
+            <p>
+                Typ hieronder een hexadecimale kleurcode in en ontdek welke kleur
+                erbij hoort.
+            </p>
+
+            <input
+                type="text"
+                id="hexInput"
+                placeholder="#FF5733"
+                maxlength="7"
+            >
+
+            <br>
+
+            <button onclick="toonKleur()">Toon kleur</button>
+
+            <div id="kleurVoorbeeld"></div>
+
+            <p id="melding"></p>
+        </section>
+
+
+        <!-- Terug naar home -->
+        <section style="text-align: center;">
+            <button class="home-knop" onclick="gaNaarHome()">
+                ← Terug naar Home
+            </button>
+        </section>
+
+    </main>
+
+
+    <script>
+        function toonKleur() {
+            let kleur = document.getElementById("hexInput").value.trim();
+            let voorbeeld = document.getElementById("kleurVoorbeeld");
+            let melding = document.getElementById("melding");
+
+            // Als de gebruiker de # vergeet, voegen we hem automatisch toe.
+            if (!kleur.startsWith("#")) {
+                kleur = "#" + kleur;
+            }
+
+            // Controleren of het een geldige hexadecimale kleurcode is.
+            let geldigeHex = /^#[0-9A-Fa-f]{6}$/;
+
+            if (geldigeHex.test(kleur)) {
+                voorbeeld.style.backgroundColor = kleur;
+                melding.textContent = "Deze kleur is " + kleur + " 🎨";
+                melding.style.color = "green";
+            } else {
+                voorbeeld.style.backgroundColor = "white";
+                melding.textContent =
+                    "Ongeldige kleurcode. Gebruik bijvoorbeeld #FF5733.";
+                melding.style.color = "red";
+            }
+        }
+
+        function gaNaarHome() {
+            window.location.href = "Index.html";
+        }
+    </script>
+
+</body>
+</html>
+```
