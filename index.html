@@ -1,65 +1,649 @@
+```html
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informatica - Home</title>
-    <link rel="stylesheet" href="opmaak.css">
+    <title>Maak een website met GitHub Pages</title>
+
+    <style>
+        /* Algemene opmaak */
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f5fb;
+            color: #202b3c;
+            line-height: 1.7;
+        }
+
+        a {
+            color: #304bd0;
+        }
+
+        /* Bovenkant */
+        header {
+            background: linear-gradient(135deg, #172238, #4968f2);
+            color: white;
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #e0e6ff;
+        }
+
+        /* Navigatiemenu */
+        nav {
+            background-color: white;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 8px #00000010;
+        }
+
+        nav a {
+            display: inline-block;
+            color: #304bd0;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px 12px;
+        }
+
+        nav a:hover {
+            color: #172238;
+            text-decoration: underline;
+        }
+
+        /* Hoofdinhoud */
+        main {
+            max-width: 950px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background-color: white;
+            margin-bottom: 25px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #1722380a;
+            scroll-margin-top: 90px;
+        }
+
+        h2 {
+            color: #304bd0;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: #202b3c;
+        }
+
+        /* Codevoorbeelden */
+        pre {
+            background-color: #172238;
+            color: #e5edff;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        p code, li code {
+            background-color: #edf0ff;
+            color: #304bd0;
+            padding: 3px 6px;
+            border-radius: 4px;
+        }
+
+        pre code {
+            color: #e5edff;
+            background: none;
+            padding: 0;
+        }
+
+        /* Informatieve blokken */
+        .tip {
+            background-color: #e9fbf2;
+            border-left: 5px solid #38b985;
+            padding: 15px;
+            border-radius: 7px;
+            margin-top: 20px;
+        }
+
+        .warning {
+            background-color: #fff5df;
+            border-left: 5px solid #f0b84b;
+            padding: 15px;
+            border-radius: 7px;
+        }
+
+        /* Knoppen */
+        .button {
+            display: inline-block;
+            background-color: #4968f2;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: #304bd0;
+        }
+
+        /* Afbeeldingen */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Tabellen */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #dce2ef;
+            text-align: left;
+        }
+
+        th {
+            background-color: #edf0ff;
+        }
+
+        /* Voettekst */
+        footer {
+            background-color: #172238;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #b9f5dd;
+        }
+
+        /* Mobiele telefoons */
+        @media (max-width: 600px) {
+            header {
+                padding: 45px 15px;
+            }
+
+            header h1 {
+                font-size: 30px;
+            }
+
+            nav a {
+                margin: 5px 7px;
+                font-size: 14px;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            main {
+                padding: 0 12px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="binairstelsel.html">Binaire stelsel</a></li>
-            <li><a href="kleurmodellen.html">Kleurmodellen</a></li>
-        </ul>
+    <!-- Titel en introductie -->
+    <header id="home">
+        <h1>Maak je eigen website!</h1>
+        <p>Een stap-voor-stap handleiding voor GitHub Pages</p>
+        <a class="button" href="#begin">Begin met leren ↓</a>
+    </header>
+
+    <!-- Navigatiemenu -->
+    <nav aria-label="Hoofdnavigatie">
+        <a href="#home">Home</a>
+        <a href="#begin">GitHub</a>
+        <a href="#repository">Repository</a>
+        <a href="#html">HTML</a>
+        <a href="#links">Links</a>
+        <a href="#afbeeldingen">Afbeeldingen</a>
+        <a href="#menu">Menu</a>
+        <a href="#css">CSS</a>
+        <a href="#publiceren">Publiceren</a>
     </nav>
 
     <main>
 
-        <h1>Welkom op mijn website</h1>
-
-        <p>
-            Op deze website leer je meer over verschillende onderwerpen
-            uit de informatica.
-        </p>
-
-        <p>
-            Gebruik het menu hierboven om naar de verschillende pagina's
-            te gaan.
-        </p>
-
-        <div class="kaart">
-
-            <h2>Onderwerpen</h2>
+        <!-- Introductie -->
+        <section>
+            <h2>Welkom op de website</h2>
 
             <p>
-                Bekijk het
-                <a href="binairstelsel.html">binaire stelsel</a>
-                en de verschillende
-                <a href="kleurmodellen.html">kleurmodellen</a>.
+                Op deze website leer je hoe je zelf een website maakt
+                met HTML en CSS en hoe je deze gratis online zet met
+                GitHub Pages.
             </p>
 
-        </div>
+            <p>
+                HTML bepaalt de inhoud van je website. CSS zorgt ervoor
+                dat je website er mooi uitziet. GitHub Pages maakt het
+                mogelijk om je website online te publiceren.
+            </p>
 
-        <img
-            src="https://placehold.co/800x300?text=Mijn+website"
-            alt="Voorbeeldafbeelding van mijn website"
-        >
+            <div class="tip">
+                <strong>💡 Tip:</strong> werk stap voor stap en sla je
+                code regelmatig op.
+            </div>
+        </section>
+
+        <!-- Stap 1 -->
+        <section id="begin">
+            <h2>1. GitHub-account aanmaken</h2>
+
+            <p>
+                Ga naar GitHub en maak een account aan. Kies een goede
+                gebruikersnaam, want die verschijnt in het webadres
+                van je website.
+            </p>
+
+            <a class="button"
+               href="https://github.com/signup"
+               target="_blank"
+               rel="noopener noreferrer">
+                Maak een account aan
+            </a>
+
+            <p>
+                Verifieer je e-mailadres en bewaar je inloggegevens veilig.
+            </p>
+
+            <p>
+                Meer uitleg vind je in de
+                <a href="https://docs.github.com/en/pages/quickstart"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    officiële GitHub Pages-handleiding
+                </a>.
+            </p>
+        </section>
+
+        <!-- Stap 2 -->
+        <section id="repository">
+            <h2>2. Een repository aanmaken</h2>
+
+            <p>
+                Een repository is een online opslagplaats voor alle
+                bestanden van je website.
+            </p>
+
+            <ol>
+                <li>Log in op GitHub.</li>
+                <li>Klik rechtsboven op het plusteken.</li>
+                <li>Kies New repository.</li>
+                <li>Geef de repository de naam <code>jouwgebruikersnaam.github.io</code>.</li>
+                <li>Kies Public.</li>
+                <li>Vink aan dat een README-bestand wordt aangemaakt.</li>
+                <li>Klik op Create repository.</li>
+            </ol>
+
+            <div class="warning">
+                <strong>Let op!</strong> Vervang
+                <code>jouwgebruikersnaam</code> door je eigen
+                GitHub-gebruikersnaam. De naam moet precies kloppen.
+            </div>
+        </section>
+
+        <!-- Stap 3 -->
+        <section id="html">
+            <h2>3. Je eerste HTML-pagina</h2>
+
+            <p>
+                Maak in je repository een nieuw bestand met de naam
+                <code>index.html</code>. Dit is de homepage van je website.
+            </p>
+
+            <p>Een eenvoudige HTML-pagina ziet er zo uit:</p>
+
+            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="nl"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Mijn website&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welkom op mijn website!&lt;/h1&gt;
+    &lt;p&gt;Dit is mijn eerste webpagina.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+            <h3>Wat betekenen de onderdelen?</h3>
+
+            <ul>
+                <li><code>html</code>: bevat de volledige webpagina.</li>
+                <li><code>head</code>: bevat informatie over de pagina.</li>
+                <li><code>title</code>: bepaalt de titel op het browsertabblad.</li>
+                <li><code>body</code>: bevat de zichtbare inhoud.</li>
+                <li><code>h1</code>: maakt een grote kop.</li>
+                <li><code>p</code>: maakt een alinea.</li>
+            </ul>
+
+            <p>
+                Sla het bestand op met Commit changes.
+            </p>
+        </section>
+
+        <!-- Stap 4 -->
+        <section id="links">
+            <h2>4. Een tweede pagina en links toevoegen</h2>
+
+            <p>
+                Maak naast <code>index.html</code> bijvoorbeeld
+                <code>binairstelsel.html</code> en
+                <code>kleurmodellen.html</code>.
+            </p>
+
+            <p>Met een link open je een andere pagina:</p>
+
+            <pre><code>&lt;a href="binairstelsel.html"&gt;
+    Lees over het binaire stelsel
+&lt;/a&gt;</code></pre>
+
+            <p>Een link terug naar de homepage:</p>
+
+            <pre><code>&lt;a href="index.html"&gt;
+    Terug naar de homepage
+&lt;/a&gt;</code></pre>
+
+            <p>
+                Het element <code>a</code> maakt een link. Het attribuut
+                <code>href</code> bepaalt waar de link naartoe gaat.
+            </p>
+
+            <div class="tip">
+                <strong>Tip:</strong> gebruik duidelijke linkteksten,
+                zodat bezoekers weten waarop ze klikken.
+            </div>
+        </section>
+
+        <!-- Stap 5 -->
+        <section id="afbeeldingen">
+            <h2>5. Een afbeelding toevoegen</h2>
+
+            <p>
+                Upload eerst een afbeelding naar je GitHub-repository.
+                Klik op Add file en daarna op Upload files.
+            </p>
+
+            <p>Je kunt de afbeelding vervolgens zo invoegen:</p>
+
+            <pre><code>&lt;img src="afbeeldingen/voorbeeld.jpg"
+     alt="Beschrijving van de afbeelding"&gt;</code></pre>
+
+            <ul>
+                <li><code>img</code> betekent afbeelding.</li>
+                <li><code>src</code> geeft de locatie van de afbeelding aan.</li>
+                <li><code>alt</code> geeft een tekstuele beschrijving.</li>
+            </ul>
+
+            <p>
+                De naam en extensie van de afbeelding moeten exact
+                overeenkomen met het bestand in je repository.
+            </p>
+
+            <div class="tip">
+                <strong>Tip:</strong> zet afbeeldingen bij elkaar in
+                een map met de naam <code>afbeeldingen</code>.
+            </div>
+        </section>
+
+        <!-- Stap 6 -->
+        <section id="menu">
+            <h2>6. Een navigatiemenu maken</h2>
+
+            <p>
+                Een menu bestaat uit een lijst met links. Hierdoor kunnen
+                bezoekers gemakkelijk door je website navigeren.
+            </p>
+
+            <pre><code>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="binairstelsel.html"&gt;Binaire stelsel&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="kleurmodellen.html"&gt;Kleurmodellen&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+
+            <ul>
+                <li><code>ul</code> maakt een ongeordende lijst.</li>
+                <li><code>li</code> maakt een lijstitem.</li>
+                <li><code>a</code> maakt een link.</li>
+            </ul>
+
+            <p>
+                Plaats dezelfde navigatie op iedere pagina van je website.
+            </p>
+        </section>
+
+        <!-- Stap 7 -->
+        <section id="css">
+            <h2>7. Je website opmaken met CSS</h2>
+
+            <p>
+                HTML bepaalt de structuur en inhoud. CSS bepaalt onder
+                andere de kleuren, lettertypes, afstanden en achtergronden.
+            </p>
+
+            <p>Hier is een voorbeeld van CSS:</p>
+
+            <pre><code>body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f5fb;
+    color: #202b3c;
+    line-height: 1.7;
+}
+
+h1 {
+    color: #304bd0;
+    text-align: center;
+}
+
+p {
+    font-size: 16px;
+}
+
+a {
+    color: #4968f2;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}</code></pre>
+
+            <h3>Een apart CSS-bestand gebruiken</h3>
+
+            <p>
+                Maak een bestand met de naam <code>opmaak.css</code>.
+                Zet de CSS-code daarin.
+            </p>
+
+            <p>
+                Voeg vervolgens deze regel toe binnen het element
+                <code>head</code> van ieder HTML-bestand:
+            </p>
+
+            <pre><code>&lt;link rel="stylesheet" href="opmaak.css"&gt;</code></pre>
+
+            <h3>Belangrijke CSS-eigenschappen</h3>
+
+            <table>
+                <tr>
+                    <th>Eigenschap</th>
+                    <th>Betekenis</th>
+                </tr>
+                <tr>
+                    <td><code>color</code></td>
+                    <td>De kleur van de tekst.</td>
+                </tr>
+                <tr>
+                    <td><code>background-color</code></td>
+                    <td>De achtergrondkleur.</td>
+                </tr>
+                <tr>
+                    <td><code>padding</code></td>
+                    <td>Ruimte binnen een element.</td>
+                </tr>
+                <tr>
+                    <td><code>margin</code></td>
+                    <td>Ruimte buiten een element.</td>
+                </tr>
+                <tr>
+                    <td><code>display: block</code></td>
+                    <td>Het element begint op een nieuwe regel.</td>
+                </tr>
+                <tr>
+                    <td><code>:hover</code></td>
+                    <td>De stijl wanneer je met de muis over een element gaat.</td>
+                </tr>
+            </table>
+
+            <div class="tip">
+                <strong>Let op:</strong> deze website heeft de CSS al
+                in het HTML-bestand staan. Je hoeft dus geen tweede
+                bestand te maken om dit ontwerp te gebruiken.
+            </div>
+        </section>
+
+        <!-- Stap 8 -->
+        <section id="bestanden">
+            <h2>8. Bestanden organiseren</h2>
+
+            <p>
+                Wanneer je website groeit, is het handig om bestanden
+                in mappen te organiseren.
+            </p>
+
+            <pre><code>mijn-website/
+├── index.html
+├── binairstelsel.html
+├── kleurmodellen.html
+├── opmaak.css
+└── afbeeldingen/
+    └── voorbeeld.jpg</code></pre>
+
+            <p>
+                Laat <code>index.html</code> in de hoofdmap staan.
+                Wanneer je bestanden in mappen zet, moet je in je links
+                het juiste bestandspad gebruiken.
+            </p>
+
+            <h3>Samenwerken</h3>
+
+            <p>
+                Je kunt anderen uitnodigen om samen aan de website te werken.
+                Open je repository, ga naar Settings en zoek Collaborators.
+                Voeg daar de gebruikersnaam van de andere persoon toe.
+            </p>
+        </section>
+
+        <!-- Stap 9 -->
+        <section id="publiceren">
+            <h2>9. Je website online zetten</h2>
+
+            <p>
+                Sla je wijzigingen op met Commit changes. Als je repository
+                de juiste naam heeft, kun je je website openen via:
+            </p>
+
+            <pre><code>https://jouwgebruikersnaam.github.io</code></pre>
+
+            <p>
+                Vervang <code>jouwgebruikersnaam</code> door je eigen
+                GitHub-gebruikersnaam.
+            </p>
+
+            <ol>
+                <li>Open je repository op GitHub.</li>
+                <li>Ga naar Settings.</li>
+                <li>Klik op Pages.</li>
+                <li>Controleer of GitHub Pages is ingeschakeld.</li>
+                <li>Wacht tot de website is gepubliceerd.</li>
+                <li>Open de link van je website.</li>
+            </ol>
+
+            <div class="warning">
+                <strong>Werkt je website niet?</strong>
+                <ul>
+                    <li>Controleer of het bestand <code>index.html</code> heet.</li>
+                    <li>Controleer de naam van de repository.</li>
+                    <li>Controleer of alle bestanden zijn opgeslagen.</li>
+                    <li>Controleer of je bestandsnamen en links kloppen.</li>
+                    <li>Wacht even en vernieuw de pagina.</li>
+                </ul>
+            </div>
+
+            <p>
+                Meer informatie vind je in de officiële documentatie:
+            </p>
+
+            <a class="button"
+               href="https://docs.github.com/en/pages"
+               target="_blank"
+               rel="noopener noreferrer">
+                GitHub Pages-handleiding
+            </a>
+        </section>
+
+        <!-- Afsluiting -->
+        <section>
+            <h2>Je hebt de basis geleerd! 🎉</h2>
+
+            <p>
+                Je weet nu hoe je een HTML-pagina maakt, meerdere pagina's
+                aan elkaar koppelt, afbeeldingen toevoegt en CSS gebruikt
+                voor de vormgeving.
+            </p>
+
+            <p>
+                Experimenteer met kleuren, lettertypes, menu's en
+                afbeeldingen om je website persoonlijk te maken.
+            </p>
+
+            <a class="button" href="#home">Terug naar boven ↑</a>
+        </section>
 
     </main>
 
+    <!-- Voettekst -->
     <footer>
-        <p>Mijn GitHub Pages website</p>
+        <p>Mijn website met GitHub Pages</p>
+        <p>Gemaakt met HTML en CSS</p>
+        <a href="#home">Terug naar boven</a>
     </footer>
 
 </body>
 </html>
-
-```html
-<button onclick="window.location.href='kleurmodellen.html'">
-    🎨 Kleurmodellen
-</button>
 ```
