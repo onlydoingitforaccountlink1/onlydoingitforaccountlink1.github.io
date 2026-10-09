@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luuk's Game Casino</title>
+    <title>Luuk's Gamehal</title>
 
     <style>
         * {
@@ -29,16 +29,16 @@
         }
 
         header h1 {
-            color: #168cff;
             margin: 0;
+            color: #49a7ff;
         }
 
         .homeknop {
             background: #168cff;
             color: white;
+            text-decoration: none;
             padding: 12px 20px;
             border-radius: 10px;
-            text-decoration: none;
             font-weight: bold;
         }
 
@@ -52,7 +52,7 @@
         }
 
         .intro h2 {
-            font-size: 38px;
+            font-size: clamp(30px, 5vw, 42px);
             margin-bottom: 10px;
         }
 
@@ -63,63 +63,80 @@
 
         .punten {
             display: inline-block;
-            margin-top: 12px;
             padding: 14px 25px;
+            margin-top: 10px;
             border: 2px solid #10d9a0;
             border-radius: 12px;
             color: #10d9a0;
-            font-size: 22px;
+            font-size: 23px;
             font-weight: bold;
         }
 
         .games {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 25px;
-            max-width: 1000px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: auto;
             padding: 20px;
         }
 
         .game {
             background: #142b44;
-            padding: 25px;
-            border-radius: 18px;
             border: 1px solid #294663;
+            border-radius: 18px;
+            padding: 24px;
             text-align: center;
+            min-width: 0;
         }
 
         .game h2 {
             color: #49a7ff;
         }
 
+        .uitleg {
+            color: #c5d7e9;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        button, select {
+            font: inherit;
+            border-radius: 8px;
+            padding: 11px 14px;
+            margin: 5px;
+        }
+
         button {
             border: none;
             background: #168cff;
             color: white;
-            font-size: 16px;
             font-weight: bold;
-            padding: 12px 18px;
-            border-radius: 9px;
             cursor: pointer;
-            margin: 5px;
         }
 
-        button:hover {
+        button:hover:not(:disabled) {
             background: #0869c4;
         }
 
         button:disabled {
-            opacity: 0.45;
+            opacity: 0.5;
             cursor: not-allowed;
         }
 
-        #plinkoBoard {
+        select {
+            background: #203c59;
+            color: white;
+            border: 1px solid #49a7ff;
+            max-width: 100%;
+        }
+
+        canvas {
             display: block;
             width: 100%;
             max-width: 340px;
             height: auto;
-            margin: 15px auto;
+            margin: 18px auto 10px;
             background: #091523;
             border-radius: 12px;
         }
@@ -129,36 +146,39 @@
             grid-template-columns: repeat(7, 1fr);
             gap: 4px;
             max-width: 340px;
-            margin: 10px auto;
+            margin: 10px auto 18px;
         }
 
         .slot {
             background: #244765;
             border-radius: 5px;
-            padding: 8px 0;
+            padding: 8px 1px;
             font-size: 12px;
             font-weight: bold;
         }
 
+        .status {
+            min-height: 44px;
+            line-height: 1.5;
+            color: #e0eaf5;
+        }
+
         .mine-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(5, minmax(0, 1fr));
             gap: 7px;
-            max-width: 300px;
+            max-width: 310px;
             margin: 20px auto;
         }
 
         .mine-cell {
             aspect-ratio: 1;
+            width: 100%;
             margin: 0;
             padding: 0;
-            font-size: 22px;
+            font-size: clamp(16px, 4vw, 23px);
             background: #254a6b;
             border: 1px solid #42729a;
-        }
-
-        .mine-cell:hover:not(:disabled) {
-            background: #3675a5;
         }
 
         .mine-cell.safe {
@@ -167,18 +187,6 @@
 
         .mine-cell.mine {
             background: #a52d45;
-        }
-
-        .status {
-            min-height: 48px;
-            color: #d7e8fa;
-            line-height: 1.5;
-        }
-
-        .uitleg {
-            color: #b9cce0;
-            font-size: 14px;
-            line-height: 1.6;
         }
 
         footer {
@@ -194,15 +202,15 @@
 <body>
 
 <header>
-    <h1>🎮 Luuk's Game Casino</h1>
+    <h1>🎮 Luuk's Gamehal</h1>
     <a class="homeknop" href="index.html">🏠 Home</a>
 </header>
 
 <section class="intro">
     <h2>Welkom in de gamehal!</h2>
     <p>
-        Speel Plinko of Minefield en verzamel punten.
-        Je speelt alleen voor de lol: er is geen geld en je zet geen punten in.
+        Speel Plinko en Minefield, ontdek diamanten
+        en verzamel punten. Je speelt gratis, zonder inzetten.
     </p>
     <div class="punten">⭐ Punten: <span id="points">100</span></div>
 </section>
@@ -213,9 +221,18 @@
     <section class="game">
         <h2>🔵 Plinko</h2>
         <p class="uitleg">
-            Laat de bal vallen! De plek waar hij landt,
-            bepaalt hoeveel punten je krijgt.
+            Kies hoeveel kleine ballen je tegelijk laat vallen.
+            Elke bal levert punten op afhankelijk van het vakje
+            waar hij onderaan terechtkomt.
         </p>
+
+        <label for="ballCount">Aantal ballen:</label>
+        <select id="ballCount">
+            <option value="1">1 bal</option>
+            <option value="5">5 ballen</option>
+            <option value="10">10 ballen</option>
+            <option value="20">20 ballen</option>
+        </select>
 
         <canvas id="plinkoBoard" width="340" height="310"></canvas>
 
@@ -229,17 +246,29 @@
             <div class="slot">5</div>
         </div>
 
-        <button id="dropButton" onclick="dropBall()">Laat bal vallen</button>
-        <p id="plinkoStatus" class="status">Klaar voor de start?</p>
+        <button id="dropButton" onclick="dropBalls()">Laat ballen vallen</button>
+        <p id="plinkoStatus" class="status">Klaar om te spelen!</p>
     </section>
 
     <!-- MINEFIELD -->
     <section class="game">
         <h2>💎 Minefield</h2>
         <p class="uitleg">
-            Zoek de diamanten op het bord. Er zijn 5 mijnen
-            en 20 veilige vakjes. Elke diamant geeft punten.
+            Zoek diamanten op het bord. Kies zelf het aantal bommen.
+            Minder bommen betekent minder punten per diamant.
+            Je bestaande punten raak je niet kwijt.
         </p>
+
+        <label for="bombCount">Aantal bommen:</label>
+        <select id="bombCount" onchange="newMinefield()">
+            <option value="3">3 bommen</option>
+            <option value="5" selected>5 bommen</option>
+            <option value="10">10 bommen</option>
+            <option value="15">15 bommen</option>
+            <option value="20">20 bommen</option>
+        </select>
+
+        <p id="rewardInfo" class="uitleg"></p>
 
         <div class="mine-grid" id="mineGrid"></div>
 
@@ -251,116 +280,167 @@
             ⭐ Punten verzamelen
         </button>
 
-        <button onclick="newMinefield()">Nieuw bord</button>
+        <button onclick="newMinefield()">🔄 Nieuw bord</button>
     </section>
 
 </main>
 
 <footer>
-    <p>Luuk's Game Casino | Speel voor de lol 🎮</p>
+    <p>Luuk's Gamehal © 2026 | Speel voor de lol 🎮</p>
 </footer>
 
 <script>
-    // PUNTENSYSTEEM
+    // ALGEMEEN PUNTENSYSTEEM
     let points = 100;
-    const pointsDisplay = document.getElementById("points");
 
     function addPoints(amount) {
         points += amount;
-        pointsDisplay.textContent = points;
+        document.getElementById("points").textContent = points;
     }
 
+    // -------------------------
     // PLINKO
+    // -------------------------
+
     const canvas = document.getElementById("plinkoBoard");
     const ctx = canvas.getContext("2d");
     const dropButton = document.getElementById("dropButton");
 
-    const rows = 8;
+    const pegRows = 8;
     const pegs = [];
 
-    for (let row = 0; row < rows; row++) {
+    for (let row = 0; row < pegRows; row++) {
         for (let col = 0; col <= row; col++) {
             pegs.push({
                 x: 170 + (col - row / 2) * 34,
-                y: 38 + row * 31
+                y: 35 + row * 30
             });
         }
     }
 
-    function drawBoard(ball = null) {
+    let activeBalls = [];
+    let plinkoRunning = false;
+
+    function drawBoard() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Pennen
+        // Teken de pinnen.
         ctx.fillStyle = "#62c5ff";
 
         pegs.forEach(peg => {
             ctx.beginPath();
-            ctx.arc(peg.x, peg.y, 4, 0, Math.PI * 2);
+            ctx.arc(peg.x, peg.y, 3.5, 0, Math.PI * 2);
             ctx.fill();
         });
 
-        // Ball
-        if (ball) {
+        // Teken alle ballen tegelijk.
+        activeBalls.forEach(ball => {
             ctx.beginPath();
-            ctx.arc(ball.x, ball.y, 8, 0, Math.PI * 2);
+            ctx.arc(ball.x, ball.y, 4, 0, Math.PI * 2);
             ctx.fillStyle = "#ffdc5e";
             ctx.fill();
+        });
+    }
+
+    function dropBalls() {
+        if (plinkoRunning) return;
+
+        const count = Number(document.getElementById("ballCount").value);
+
+        activeBalls = [];
+        plinkoRunning = true;
+        dropButton.disabled = true;
+
+        let finished = 0;
+        let totalReward = 0;
+
+        document.getElementById("plinkoStatus").textContent =
+            count + " bal(len) vallen...";
+
+        // Elke bal krijgt een willekeurig pad door de pinnen.
+        for (let i = 0; i < count; i++) {
+            const path = [];
+
+            for (let row = 0; row < pegRows; row++) {
+                path.push(Math.random() < 0.5 ? 0 : 1);
+            }
+
+            activeBalls.push({
+                x: 170,
+                y: 12,
+                row: 0,
+                path: path,
+                position: 0,
+                nextTime: i * 90
+            });
         }
+
+        const rewards = [5, 10, 20, 50, 20, 10, 5];
+        let lastFrame = performance.now();
+
+        function animate(now) {
+            const elapsed = now - lastFrame;
+            lastFrame = now;
+
+            activeBalls.forEach(ball => {
+                if (ball.done) return;
+
+                ball.timer = (ball.timer || 0) + elapsed;
+
+                if (ball.timer < 85 + ball.nextTime) return;
+
+                ball.timer = 0;
+                ball.nextTime = 0;
+
+                if (ball.row < pegRows) {
+                    ball.position += ball.path[ball.row];
+                    ball.row++;
+
+                    ball.y = 12 + ball.row * 34;
+                    ball.x = 170 + (ball.position - ball.row / 2) * 34;
+                }
+
+                if (ball.row >= pegRows) {
+                    ball.done = true;
+
+                    const slot = Math.max(
+                        0,
+                        Math.min(6, Math.round(ball.position - 3.5) + 3)
+                    );
+
+                    const reward = rewards[slot];
+
+                    addPoints(reward);
+                    totalReward += reward;
+                    finished++;
+
+                    document.getElementById("plinkoStatus").textContent =
+                        finished + " van " + count +
+                        " ballen geland. Verdiend: " +
+                        totalReward + " punten.";
+                }
+            });
+
+            drawBoard();
+
+            if (finished < count) {
+                requestAnimationFrame(animate);
+            } else {
+                plinkoRunning = false;
+                dropButton.disabled = false;
+                drawBoard();
+            }
+        }
+
+        requestAnimationFrame(animate);
     }
 
     drawBoard();
 
-    function dropBall() {
-        dropButton.disabled = true;
-        document.getElementById("plinkoStatus").textContent =
-            "De bal is onderweg...";
-
-        let row = 0;
-        let position = 3;
-        const path = [];
-
-        // Maak een willekeurig pad door de pinnen.
-        for (let i = 0; i < rows; i++) {
-            const move = Math.random() < 0.5 ? 0 : 1;
-            position += move;
-            path.push(move);
-        }
-
-        let step = 0;
-        const ball = { x: 170, y: 12 };
-
-        function animate() {
-            if (step >= rows) {
-                const slot = Math.max(0, Math.min(6, position - 1));
-                const rewards = [5, 10, 20, 50, 20, 10, 5];
-                const reward = rewards[slot];
-
-                addPoints(reward);
-
-                document.getElementById("plinkoStatus").textContent =
-                    "De bal landde in vak " + (slot + 1) +
-                    ". Je krijgt " + reward + " punten!";
-
-                dropButton.disabled = false;
-                drawBoard();
-                return;
-            }
-
-            row++;
-            ball.y = 38 + row * 31;
-            position = 3 + path.slice(0, row).reduce((a, b) => a + b, 0);
-            ball.x = 170 + (position - row / 2 - 1.5) * 34;
-
-            drawBoard(ball);
-            step++;
-
-            setTimeout(animate, 180);
-        }
-
-        animate();
-    }
-
+    // -------------------------
     // MINEFIELD
+    // -------------------------
+
     const mineGrid = document.getElementById("mineGrid");
     const mineStatus = document.getElementById("mineStatus");
     const collectButton = document.getElementById("collectButton");
@@ -370,6 +450,23 @@
     let minePoints = 0;
     let gameOver = false;
 
+    function getRewardPerDiamond() {
+        const bombCount = Number(
+            document.getElementById("bombCount").value
+        );
+
+        // Minder bommen = lagere beloning per diamant.
+        const rewards = {
+            3: 2,
+            5: 3,
+            10: 5,
+            15: 8,
+            20: 15
+        };
+
+        return rewards[bombCount];
+    }
+
     function newMinefield() {
         mines = [];
         revealed = [];
@@ -377,12 +474,21 @@
         gameOver = false;
 
         collectButton.disabled = true;
-        mineStatus.textContent =
-            "Zoek diamanten. Elke veilige vondst levert 10 punten op.";
 
-        // Kies 5 unieke mijnposities.
-        while (mines.length < 5) {
+        const bombCount = Number(
+            document.getElementById("bombCount").value
+        );
+
+        document.getElementById("rewardInfo").textContent =
+            bombCount + " bommen: " +
+            getRewardPerDiamond() + " punten per diamant.";
+
+        mineStatus.textContent =
+            "Zoek diamanten! Je behoudt altijd je bestaande totaalscore.";
+
+        while (mines.length < bombCount) {
             const spot = Math.floor(Math.random() * 25);
+
             if (!mines.includes(spot)) {
                 mines.push(spot);
             }
@@ -391,7 +497,7 @@
         renderMinefield();
     }
 
-    function renderMinefield(showAll = false) {
+    function renderMinefield(revealEverything = false) {
         mineGrid.innerHTML = "";
 
         for (let i = 0; i < 25; i++) {
@@ -399,7 +505,7 @@
             cell.className = "mine-cell";
             cell.textContent = "?";
 
-            if (revealed.includes(i) || showAll) {
+            if (revealed.includes(i) || revealEverything) {
                 cell.disabled = true;
 
                 if (mines.includes(i)) {
@@ -409,6 +515,8 @@
                     cell.textContent = "💎";
                     cell.classList.add("safe");
                 }
+            } else if (gameOver) {
+                cell.disabled = true;
             } else {
                 cell.onclick = () => revealCell(i);
             }
@@ -429,38 +537,44 @@
             renderMinefield(true);
 
             mineStatus.textContent =
-                "💥 Je vond een mijn! Je houdt je bestaande punten, maar deze ronde stopt.";
+                "💥 Je vond een bom! Je verzamelde punten van deze ronde zijn niet toegevoegd. Je totaalscore blijft intact.";
+
             return;
         }
 
-        minePoints += 10;
+        minePoints += getRewardPerDiamond();
 
         mineStatus.textContent =
-            "💎 Diamant gevonden! Je hebt " + minePoints +
-            " punten verzameld in deze ronde.";
+            "💎 Diamant gevonden! Rondepunten: " +
+            minePoints + ". Je kunt ze verzamelen wanneer je wilt.";
 
         collectButton.disabled = false;
-        renderMinefield();
 
-        if (revealed.length === 20) {
+        if (revealed.length === 25 - mines.length) {
+            renderMinefield(true);
             collectPoints();
-            mineStatus.textContent =
-                "🏆 Alle diamanten gevonden! Je punten zijn toegevoegd.";
+            return;
         }
+
+        renderMinefield();
     }
 
     function collectPoints() {
         if (gameOver || minePoints <= 0) return;
 
-        addPoints(minePoints);
-        mineStatus.textContent =
-            "⭐ Je hebt " + minePoints +
-            " punten verzameld! Je kunt een nieuw bord starten.";
+        const collected = minePoints;
+
+        addPoints(collected);
 
         minePoints = 0;
         gameOver = true;
         collectButton.disabled = true;
+
         renderMinefield(true);
+
+        mineStatus.textContent =
+            "⭐ Je hebt " + collected +
+            " punten verzameld! Start een nieuw bord om verder te spelen.";
     }
 
     newMinefield();
