@@ -1,0 +1,331 @@
+```html
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alles over AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0b1726;
+            color: white;
+        }
+
+        header {
+            background: #10243a;
+            padding: 20px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #49a7ff;
+        }
+
+        .homeknop {
+            background: #168cff;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .homeknop:hover {
+            background: #0869c4;
+        }
+
+        .intro {
+            text-align: center;
+            padding: 65px 20px;
+            background: linear-gradient(135deg, #10243a, #174878);
+        }
+
+        .intro h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            margin: 0 0 20px;
+        }
+
+        .intro h2 span {
+            color: #49a7ff;
+        }
+
+        .intro p {
+            max-width: 700px;
+            margin: auto;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #d9e7f5;
+        }
+
+        main {
+            max-width: 1050px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        .kaartjes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 22px;
+            margin: 25px 0;
+        }
+
+        .kaart {
+            background: #142b44;
+            border: 1px solid #294663;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .kaart h3 {
+            color: #49a7ff;
+            font-size: 22px;
+            margin-top: 0;
+        }
+
+        .kaart p, .kaart li {
+            line-height: 1.7;
+            color: #d4e2f0;
+        }
+
+        .sectie {
+            background: #10243a;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+
+        .sectie h2 {
+            color: #49a7ff;
+        }
+
+        .sectie p {
+            line-height: 1.8;
+            color: #d4e2f0;
+        }
+
+        .voorbeeld {
+            background: #142b44;
+            border-left: 5px solid #168cff;
+            padding: 18px;
+            margin-top: 15px;
+            border-radius: 8px;
+            line-height: 1.7;
+        }
+
+        .quiz {
+            text-align: center;
+            background: #142b44;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .quiz h2 {
+            color: #49a7ff;
+        }
+
+        .quiz button {
+            background: #168cff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 18px;
+            margin: 6px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .quiz button:hover {
+            background: #0869c4;
+        }
+
+        #antwoord {
+            min-height: 30px;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 22px;
+            margin-top: 30px;
+            background: #10243a;
+            color: #b9cce0;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>🤖 Alles over AI</h1>
+    <a href="index.html" class="homeknop">🏠 Terug naar Home</a>
+</header>
+
+<section class="intro">
+    <h2>Wat is <span>AI?</span></h2>
+    <p>
+        AI staat voor Artificial Intelligence, oftewel kunstmatige
+        intelligentie. Het is technologie waarmee computers taken
+        kunnen uitvoeren waarvoor normaal gesproken menselijke
+        intelligentie nodig is, zoals teksten begrijpen, afbeeldingen
+        herkennen en vragen beantwoorden.
+    </p>
+</section>
+
+<main>
+
+    <section class="kaartjes">
+
+        <div class="kaart">
+            <h3>🧠 Hoe werkt AI?</h3>
+            <p>
+                AI-systemen worden getraind met grote hoeveelheden
+                gegevens. Daardoor leren ze patronen herkennen en
+                voorspellingen doen. Een chatbot kan bijvoorbeeld
+                leren welke woorden vaak bij elkaar passen.
+            </p>
+        </div>
+
+        <div class="kaart">
+            <h3>📱 Waar wordt AI gebruikt?</h3>
+            <p>
+                AI zit in allerlei technologie. Denk aan
+                aanbevelingen op YouTube, gezichtsherkenning,
+                vertaalapps, navigatie en chatbots zoals ChatGPT.
+            </p>
+        </div>
+
+        <div class="kaart">
+            <h3>🎨 Wat kan AI maken?</h3>
+            <p>
+                Sommige AI-programma's kunnen teksten schrijven,
+                afbeeldingen genereren, muziek maken, code schrijven
+                en helpen bij het oplossen van problemen.
+            </p>
+        </div>
+
+    </section>
+
+    <section class="sectie">
+        <h2>📚 Verschillende soorten AI</h2>
+
+        <p>
+            Er bestaan verschillende manieren waarop AI werkt.
+            De meeste AI die we tegenwoordig gebruiken, is ontworpen
+            voor bepaalde taken.
+        </p>
+
+        <div class="voorbeeld">
+            <strong>Machine learning:</strong>
+            computers leren patronen uit gegevens in plaats van dat
+            iedere regel apart wordt geprogrammeerd.
+        </div>
+
+        <div class="voorbeeld">
+            <strong>Generatieve AI:</strong>
+            AI die nieuwe inhoud kan maken, zoals teksten,
+            afbeeldingen, geluid of computerprogramma's.
+        </div>
+
+        <div class="voorbeeld">
+            <strong>Spraak- en beeldherkenning:</strong>
+            systemen die bijvoorbeeld gesproken woorden herkennen
+            of voorwerpen op foto's kunnen vinden.
+        </div>
+    </section>
+
+    <section class="kaartjes">
+
+        <div class="kaart">
+            <h3>✅ Voordelen van AI</h3>
+            <ul>
+                <li>Kan snel informatie verwerken.</li>
+                <li>Kan helpen bij school en werk.</li>
+                <li>Kan repetitieve taken automatiseren.</li>
+                <li>Kan mensen helpen ideeën te bedenken.</li>
+            </ul>
+        </div>
+
+        <div class="kaart">
+            <h3>⚠️ Nadelen van AI</h3>
+            <ul>
+                <li>Kan onjuiste informatie geven.</li>
+                <li>Kan vooroordelen uit trainingsgegevens overnemen.</li>
+                <li>Kan privacyproblemen veroorzaken.</li>
+                <li>Wordt soms gebruikt om nepbeelden of nepnieuws te maken.</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <section class="sectie">
+        <h2>🔍 Kan je AI altijd vertrouwen?</h2>
+
+        <p>
+            Nee. AI kan overtuigend klinken en toch fouten maken.
+            Controleer belangrijke informatie daarom met betrouwbare
+            bronnen. Deel ook niet zomaar persoonlijke gegevens met
+            een AI-systeem.
+        </p>
+
+        <p>
+            AI is vooral handig als hulpmiddel. Je eigen denkwerk
+            blijft belangrijk, zeker bij schoolopdrachten.
+        </p>
+    </section>
+
+    <section class="quiz">
+        <h2>🧪 Test je kennis!</h2>
+        <p>Waar staat AI voor?</p>
+
+        <button onclick="checkAntwoord(false)">
+            Automatic Internet
+        </button>
+
+        <button onclick="checkAntwoord(true)">
+            Artificial Intelligence
+        </button>
+
+        <button onclick="checkAntwoord(false)">
+            Advanced Information
+        </button>
+
+        <p id="antwoord"></p>
+    </section>
+
+</main>
+
+<footer>
+    <p>Alles over AI | Gemaakt door Luuk © 2026</p>
+</footer>
+
+<script>
+    function checkAntwoord(correct) {
+        const antwoord = document.getElementById("antwoord");
+
+        if (correct) {
+            antwoord.textContent = "✅ Goed gedaan! AI staat voor Artificial Intelligence.";
+            antwoord.style.color = "#10d9a0";
+        } else {
+            antwoord.textContent = "❌ Niet helemaal! Probeer het nog eens.";
+            antwoord.style.color = "#ff7272";
+        }
+    }
+</script>
+
+</body>
+</html>
+```
